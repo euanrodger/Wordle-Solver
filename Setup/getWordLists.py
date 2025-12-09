@@ -24,7 +24,7 @@ def find_latest_wordle_wordlist():
     """Find the latest Wordle word list file by date in filename."""
     wordlist_dir = Path(__file__).parent.parent / "WordLists"
     
-    # Find all files matching the pattern wordle-words-*.txt
+    # Find all files matching the pattern wordle-words-*.txt, sort for latest date
     wordle_files = sorted(wordlist_dir.glob("wordle-words-*.txt"), reverse=True)
     
     if wordle_files:
