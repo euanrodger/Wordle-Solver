@@ -18,8 +18,8 @@ If you want to create up to date word lists:
 - `python Setup/getWordLists.py` to scrape the allowed Wordle guesses from the New York Times Wordle site
 
 If you want to identify the 'best' opening guess:
-- `python identifyBestOpener.py --wordlist wordle --top 10` to find the top 10 opening guesses using the allowed Wordle guesses list  
-- `python identifyBestOpener.py --wordlist frequency --top 10` to find the top 10 opening guesses using the frequency-weighted word list
+- `python identifyBestOpenerOneStep.py --wordlist wordle --top 10` to find the top 10 opening guesses using the allowed Wordle guesses list  
+- `python identifyBestOpenerOneStep.py --wordlist frequency --top 10` to find the top 10 opening guesses using the frequency-weighted word list
 
 ## WordLists
 Wordle has a list of possible answers, 5-letter words where each word is equally likely to get picked. The list of possible answers is a subset of a larger list of allowed guesses. The answer list is difficult to scrape, but the list of allowed guesses is easy to get.
