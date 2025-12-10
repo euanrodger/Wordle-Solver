@@ -4,7 +4,7 @@ The goal with this repository is to create a script or program or application th
 Current repository only contains code to:
 - Create word lists from scraped data and NLTK corpora
 - Get the "Pattern" (i.e. the Green/Yellow/Black square emojis) from a guess against an answer
-- Identify the 'best' opening guess (currently unable to account for the fact that you have more guesses after the first)
+- Identify the 'best' opening guess
 
 ## Inspiration and Methodology
 3Blue1Brown videos: https://www.youtube.com/watch?v=v68zYyaEmEA , https://www.youtube.com/watch?v=fRed0Xmc2Wg
@@ -20,6 +20,7 @@ If you want to create up to date word lists:
 If you want to identify the 'best' opening guess:
 - `python identifyBestOpenerOneStep.py --wordlist wordle --top 10` to find the top 10 opening guesses using the allowed Wordle guesses list  
 - `python identifyBestOpenerOneStep.py --wordlist frequency --top 10` to find the top 10 opening guesses using the frequency-weighted word list
+- `python identifyBestOpenerTwoStep.py --wordlist frequency --top 10` to find the top 10 opening guesses using the frequency-weighted word list, accounting for information gain with a second guess (takes hours to run and could be optimized)
 
 ## WordLists
 Wordle has a list of possible answers, 5-letter words where each word is equally likely to get picked. The list of possible answers is a subset of a larger list of allowed guesses. The answer list is difficult to scrape, but the list of allowed guesses is easy to get.
@@ -34,7 +35,32 @@ Using the allowed guesses list will assume uniform frequency across all possible
 In reality, there's uniform probability across the possible answers list (likely the x most common words amongst allowed guesses), and 0 probability across the rest of the allowed guesses.
 
 ## Current 'Best' Opening Guesses
-Using the allowed guesses list with uniform probability, the current code evaluates the best opening guesses as:
+
+Using the frequency-weighted list with the two-step evaluation, the best opening guesses are evaluated as:
+```
+ 1. LARES — 8.4371 bits
+ 2. TARES — 8.4291 bits
+ 3. SALET — 8.4222 bits
+ 4. RATES — 8.4142 bits
+ 5. SATER — 8.4139 bits
+ 6. TALES — 8.4131 bits
+ 7. ARLES — 8.4095 bits
+ 8. TAELS — 8.4089 bits
+ 9. TEARS — 8.4048 bits
+10. RALES — 8.4032 bits
+11. TERAS — 8.3946 bits
+12. ARETS — 8.3900 bits
+13. LANES — 8.3893 bits
+14. NATES — 8.3883 bits
+15. LAERS — 8.3877 bits
+16. LORES — 8.3864 bits
+17. DARES — 8.3861 bits
+18. TARNS — 8.3857 bits
+19. TIRES — 8.3855 bits
+20. TRIES — 8.3839 bits
+```
+
+Using the allowed guesses list with uniform probability and the one-step evaluation, the best opening guesses are evaluated as:
 ```
  1. TARES — 6.1594 bits
  2. LARES — 6.1148 bits
@@ -58,7 +84,7 @@ Using the allowed guesses list with uniform probability, the current code evalua
 20. PARES — 5.9723 bits
 ```
 
-Using the frequency-weighted list, the current code evaluates the best opening guesses as:
+Using the frequency-weighted list with the one-step evaluation, the best opening guesses are evaluated as:
 ```
  1. TARES — 5.8719 bits
  2. TARSE — 5.8600 bits
